@@ -15,9 +15,9 @@ class Student(models.Model):
         return self.name
 
 
-class SchoolClass(models.Model):
+class Class(models.Model):
     name = models.CharField(max_length=200)
-    teacher = models.ForeignKey(Teacher)
+    teacher = models.ForeignKey(Teacher, null=True, blank=True)
     students = models.ManyToManyField(Student)
 
     def __unicode__(self):

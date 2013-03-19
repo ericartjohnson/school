@@ -67,13 +67,18 @@ STATIC_ROOT = ''
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
+STATIC_URL = '/resources/'
+
+# ADMIN_TOOLS_MEDIA_URL = '/static/admin/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    # os.path.join(SITE_ROOT, '..', 'static'),
+    "/var/www/resources",
 )
 
 # List of finder classes that know how to find static files in
@@ -81,7 +86,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -91,7 +96,7 @@ SECRET_KEY = '=vpc&amp;p(-&amp;%p+f$fgv)2f07udk%@%s9c+fg$q94%)r6%1%p_lt1'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    # 'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -102,7 +107,12 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.django-crossdomainxhr-middleware.XsSharing',
 )
+
+SERIALIZATION_MODULES = {
+    'json': 'wadofstuff.django.serializers.json'
+}
 
 ROOT_URLCONF = 'school.urls'
 
@@ -113,6 +123,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    os.path.join(SITE_ROOT, '..', 'templates')
 )
 
 INSTALLED_APPS = (
@@ -126,6 +137,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'tastypie',
     'classroom',
 )
 
