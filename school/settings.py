@@ -106,7 +106,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.django-crossdomainxhr-middleware.XsSharing',
+    # 'django.middleware.django-crossdomainxhr-middleware.XsSharing',
 )
 
 SERIALIZATION_MODULES = {
@@ -168,3 +168,8 @@ LOGGING = {
         },
     }
 }
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
