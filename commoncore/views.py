@@ -27,7 +27,6 @@ def index(request, coreString=None):
                 d["meta"] = {}
                 if type(d["LearningStandards"]) is list:
                     for i in range(len(d["LearningStandards"])):
-                        print i
                         d["LearningStandards"][i] = cleanCollections(d["LearningStandards"][i])
                     d["meta"]["count"] = len(d["LearningStandards"])
                 else:
